@@ -1,6 +1,6 @@
 
 function calculateCalories() {   
-  var form = document.getElementById("caloriesForm");
+var form = document.getElementById("caloriesForm");
 var gender = form.elements["gender"].value;
 var activity = form.elements["activity"].value;
  var age = document.getElementById("age").value;
@@ -47,3 +47,52 @@ var activity = form.elements["activity"].value;
   document.getElementById("fat").value = Math.round(fat);
   document.getElementById("carbs").value = Math.round(carbs);  
 }
+
+function getRecipe() {
+
+    var result = 2000;
+    if (document.getElementById("result").value > 0){
+      result = document.getElementById("result").value;
+    }
+
+    $.ajax({
+      data: {
+        "X-Mashape-Key": "0Emt9Cj5xnmshdxatPaMQNvVaDY4p19cQ3qjsnEZe5TkvRusna",
+        "targetCalories": result,
+        "timeFrame":"day"
+   },
+       url: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/mealplans/generate',
+      beforeSend: function(xhr){xhr.setRequestHeader('X-Mashape-Key', '0Emt9Cj5xnmshdxatPaMQNvVaDY4p19cQ3qjsnEZe5TkvRusna');},
+
+      success: function(response) {
+        console.log(response);
+
+      $('#breakfast-title').text(response.meals[0].title);
+      $('#breakfast-img').attr('src', 'https://spoonacular.com/recipeImages/' + response.meals[0].image);
+
+      $('#lunch-title').text(response.meals[1].title);
+      $('#lunch-img').attr('src', 'https://spoonacular.com/recipeImages/' + response.meals[1].image);
+
+      $('#dinner-title').text(response.meals[2].title);
+      $('#dinner-img').attr('src', 'https://spoonacular.com/recipeImages/' + response.meals[2].image);
+
+      $('#breakfast-link').attr('href', 'https://spoonacular.com/recipe/' + response.meals[0].image.slice(0, -4));
+      $('#lunch-link').attr('href', 'https://spoonacular.com/recipe/' + response.meals[1].image.slice(0, -4));
+      $('#dinner-link').attr('href', 'https://spoonacular.com/recipe/' + response.meals[2].image.slice(0, -4));
+
+
+      $('#nutrition-menu').text('Nutrition value of menu:');
+      $('#calories-food').text('Calories: ' + response.nutrients.calories);
+      $('#fat-food').text('Fat: '+ response.nutrients.fat);
+      $('#protein-food').text('Protein: ' + response.nutrients.protein);
+      $('#carbs-food').text('Carbs: ' + response.nutrients.carbohydrates);
+
+    },
+     error: function(XMLHttpRequest, textStatus, errorThrown) {
+        alert("Status: " + textStatus); alert("Error: " + errorThrown);
+    }
+  });
+}
+$(document).ready(function() {
+  $('#new-recipe').on('click', getRecipe);
+});

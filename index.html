@@ -75,20 +75,38 @@
 </form>
   </header>
   
-  
+ 
   <!-- Gallery Grid Section-->
   <section id="portfolio">
+     <button class="button-menu" id="new-recipe">Generate Menu</button>
+    
     <h2>Recommended Menu</h2>
-    <hr class="star-dark">
     <ul class="grid">
-      <li>Breakfast<p><img src="img/breakfast.png" alt="" height="200" width="200">
-      <a href="http://simplegreenmoms.com/skinny-fried-egg-avocado-toast/">Avocado Toast</a></li>
-      <li>Lunch<p><img src="img/lunch.png" alt="" height="200" width="215">
-      <a href="http://www.bbcgoodfood.com/recipes/spicy-quorn-avocado-wraps">Spicy avocado wraps</a></li>
-      <li>Dinner<p><img src="img/dinner.png" alt="" height="200" width="200">
-      <a href="http://www.health.com/health/recipe/0,,50400000120339,00.html">Chicken Breast</a></li>
+      <li>
+        Breakfast:<br>
+         <a href="" id="breakfast-link" target="_blank"><span id=breakfast-title></span></a>
+          <img src="" id="breakfast-img" alt="" height="50" width="50">
+      </li>
+
+      <li>
+          Lunch:<br>
+          <a href="" id="lunch-link" target="_blank"><span id=lunch-title></span></a>
+          <img src="" id="lunch-img" alt="" height="50" width="50">
+      </li>
+
+      <li>
+          Dinner:<br>
+          <a href="" id="dinner-link" target="_blank" ><span id=dinner-title></span></a>
+          <img src="" id="dinner-img" alt="" height="50" width="50">
+      </li>
 
     </ul>
+    <h3 id="nutrition-menu"></h3>
+      <span id=calories-food></span> <br>
+      <span id=fat-food></span><br>
+      <span id=protein-food></span><br>
+      <span id=carbs-food></span><br>
+
   </section>
   
 </main>
@@ -157,12 +175,8 @@ $(function () {
 });
       //# sourceURL=pen.js
     </script>
-</body></html>
-    
-        <script src="js/index.js"></script>
-
-    
-    
-    
-  </body>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script src="js/index.js"></script> 
+</body>
 </html>
+
